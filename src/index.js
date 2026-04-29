@@ -1,19 +1,46 @@
 import "./styles.css";
 console.log("Hello World");
 
+class project{
+    #itemsList=[];
+    #counter=0;
+
+    addItem(item){
+        this.#itemsList.push(item);
+        this.#counter++;
+    }
+
+    removeItem(ID){
+        this.#itemsList=this.#itemsList.filter(item=>item.getID!=ID);
+        this.#counter--;
+    }
+
+    get counter(){
+        return this.#counter;
+    }
+
+    get itemsList(){
+        return this.#itemsList;
+    }
+    
+}
+
 class item{
-    #id;
+    #ID;
     #title;
     #description;
     #dueDate;
     #priority;
     
-    constructor(title, description, dueDate, priority){
-        this.#id=crypto.randomUUID();
+    constructor(title, description, dueDate, priority, options = {}){
+        this.#ID=crypto.randomUUID();
         this.#title=title;
         this.#description=description;
         this.#dueDate=dueDate;
         this.#priority=priority;
+
+        //optional things
+
     }
 
     get title(){
@@ -47,7 +74,12 @@ class item{
     set priority(value){
         this.#priority=value;
     }
+
+    get getID(){
+        return this.#ID;
+    }
 }
+
 
 
 
@@ -58,3 +90,16 @@ console.log(Darren.priority);
 Darren.priority="low";
 console.log(Darren.priority)
 */
+
+const Darren = new item("Code", "This is a Description", "May 1st", "high");
+console.log(Darren);
+
+const Jason = new item("Travel", "This Description", "May 2nd", "low");
+console.log(Jason);
+
+const p=new project();
+p.addItem(Darren);
+p.addItem(Jason);
+
+console.log(p.counter);
+console.log(p.itemsList);
