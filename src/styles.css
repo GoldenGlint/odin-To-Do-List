@@ -11,6 +11,8 @@
     --main-text:    #1C1F2E;
     --main-sub:     #6B7080;
 
+    --card-bg: #ffffff;
+
     /*Status Colors*/
     --done: #4CAF50;
     --in-progress: #FFA726;
@@ -24,6 +26,7 @@
     --sidebar-text: #C8CADB;
     --main-bg:      #1C1F2E;
     --main-text:    #F0F1F8;
+    --card-bg: #23263A;
 }
 
 #container {
@@ -124,9 +127,72 @@
 }
 
 #project-container {
-    grid-row: 2;
-    grid-column: 2;
-    background-color: var(--main-bg);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 24px;
+    align-content: start;
+}
+
+.project-card {
+    background: var(--card-bg, #ffffff);
+    border: 0.5px solid var(--sidebar-border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.project-name {
+    font-size: 16px;
+    font-weight: 500;
     color: var(--main-text);
-    padding: 32px;
+    margin: 0;
+}
+
+.project-description {
+    font-size: 13px;
+    color: var(--main-sub);
+    margin: 0;
+}
+
+.project-counter {
+    font-size: 12px;
+    font-weight: 500;
+    color: #5C6BC0;
+    background: #E8EAF6;
+    border-radius: 20px;
+    padding: 3px 10px;
+    width: fit-content;
+    margin: 0;
+}
+
+.project-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-top: 0.5px solid var(--sidebar-border);
+    padding-top: 8px;
+}
+
+.item-name {
+    font-size: 13px;
+    color: var(--sidebar-text);
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.item-name::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #5C6BC0;
+    flex-shrink: 0;
 }
