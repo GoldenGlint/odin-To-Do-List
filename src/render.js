@@ -1,9 +1,8 @@
 
-const render = {
+export const render = {
     
     sidebar(arr){
-        const sidebarContainer=document.createElement("div");
-        sidebarContainer.id="sidebar-container";
+        const sidebarContainer=document.querySelector("#sidebar-container");
 
         const mainButtonContainer=document.createElement("div");
         mainButtonContainer.id="main-buttons-container";
@@ -13,25 +12,27 @@ const render = {
         inbox.textContent="Inbox";
 
         const today=document.createElement("button");
-        inbox.id="today";
-        inbox.textContent="Today";
+        today.id="today";
+        today.textContent="Today";
 
         const thisWeek=document.createElement("button");
-        inbox.id="week";
-        inbox.textContent="This Week";
+        thisWeek.id="week";
+        thisWeek.textContent="This Week";
 
         mainButtonContainer.append(inbox, today, thisWeek);
 
-        const projects=document.createElement("projects");
-        mainButtonContainer.id="projects";
+        const projects=document.createElement("div");
+        projects.id="projects";
+        
 
         const projectOverview=document.createElement("button");
-        inbox.id="project-overview";
-        inbox.textContent="Project Overview";
+        projectOverview.id="project-overview";
+        projectOverview.textContent="Project Overview";
+        projects.appendChild(projectOverview);
 
-        for(const i=0; i<arr.size(); i++){
+        for(let i=0; i<arr.length; i++){
             const project=document.createElement("button");
-            project.id=arr[i].getID;
+            project.dataset.id=arr[i].projectID;
             project.textContent=arr[i].name;
             project.classList.add("project-button");
             projects.appendChild(project);
@@ -56,8 +57,39 @@ const render = {
 
         header.append(title, counter, button);
     },
-    projectOverview(){
+    projectOverview(projectList){
+        const projectContainer=document.querySelector("#project-container");
+        for(let i=0; i<projectList.length; i++){
+            const projectCard=document.createElement("div");
+            projectCard.classList.add("project-card");
+            projectCard.dataset.id=projectList[i].getID;
+
+            const projectName=document.createElement("h2");
+            projectName.textContent=projectList[i].name;
+            projectName.classList.add("project-name");
+
+            const projectDescription=document.createElement("p");
+            projectDescription.textContent=projectList[i].description;
+            projectDescription.classList.add("project-description");
+
+            const projectCounter=document.createElement("p");
+            projectCounter.textContent=projectList[i].counter+ " items";
+            projectCounter.classList.add("project-counter");
+            
+            const items=projectList[i].itemsList;
+            const projectItems=document.createElement("ul");
+
+            for(let z=0; z<items.length; z++){
+                const item=document.createElement("li");
+                item.textContent=items[z].title;
+                item.classList.add("item-name");
+                projectItems.appendChild(item);
+            }
+            projectCard.append(projectName, projectDescription, projectCounter, projectItems);
+            projectContainer.appendChild(projectCard);
+        }
+        
 
     }
-    
+   
 }
