@@ -61,7 +61,7 @@ export const render = {
     },
     projectOverview(projectList){
         const projectContainer=document.querySelector("#project-container");
-        projectContainer="";
+        projectContainer.innerHTML="";
         projectContainer.classList.remove("list-view");
         for(let i=0; i<projectList.length; i++){
             const projectCard=document.createElement("div");
@@ -93,6 +93,87 @@ export const render = {
             projectContainer.appendChild(projectCard);
         }
         
+
+    },
+    projectHeader(num){
+        const header=document.querySelector("#header-container");
+        header.innerHTML="";
+
+        const title=document.createElement("h1");
+        title.id="title";
+        title.textContent="To-Do-List";
+
+        const counter=document.createElement("h1");
+        const text=num + " Items";
+        counter.textContent=text;
+        counter.id="item-counter";
+
+        const button=document.createElement("button");
+        button.id="toggle";
+        button.textContent="Dark Mode";
+
+        header.append(title, counter, button);
+    },
+    itemOverview(project){
+        const itemContainer=document.querySelector("#project-container");
+        itemContainer.innerHTML="";
+        itemContainer.classList.add("list-view");
+
+        const projectTitle=document.createElement("h1");
+        projectTitle.id="project-title";
+        projectTitle.textContent=project.name;
+
+        itemContainer.appendChild(projectTitle);
+
+        const items=project.itemList
+        for(let i=0; i<items.length; i++){
+            const itemCard=document.createElement("div");
+            itemCard.classList.add("item-card");
+
+            const itemGroup=document.createElement("div");;
+            itemGroup.classList.add("item-group");
+
+            const itemSpecificName=document.createElement("h2");
+            itemSpecificName.classList.add("item-specific-name");
+            itemSpecificName.textContent=items[i].title;
+
+            const itemDate=document.createElement("h2");
+            itemDate.classList.add("item-date");
+            itemDate.textContent=items[i].dueDate;
+
+            const itemPriority=document.createElement("h2");
+            itemPriority.classList.add("item-priority");
+            itemPriority.textContent=items[i].priority;
+
+            if(items[i].priority="high"){
+                itemCard.classList.add("high-priority");
+                itemPriority.classList.add("high-priority");
+            }
+            else if(items[i].priority="low"){
+                itemCard.classList.add("low-priority");
+                itemPriority.classList.add("low-priority");
+            }
+            else if(items[i].priority="medium"){
+                itemCard.classList.add("medium-priority");
+                itemPriority.classList.add("medium-priority");
+            }
+            else if(items[i].priority="cancelled"){
+                itemCard.classList.add("cancel-priority");
+                itemPriority.classList.add("cancel-priority");
+            }
+            itemGroup.append(itemSpecificName, itemDate, itemPriority);
+            
+            const itemDescription=document.createElement("p");
+            itemDescription.textContent=items[i].description;
+            itemDescription.classList.add("item-description");
+
+            const completedButton=document.createElement("button");
+            completedButton.textContent="completed";
+            completedButton.classList.add("completed-button");
+
+            itemCard.append(itemGroup, itemDescription, completedButton)
+            itemContainer.appendChild(itemCard);            
+        }
 
     }
    
