@@ -3,6 +3,7 @@ export const render = {
     
     sidebar(arr){
         const sidebarContainer=document.querySelector("#sidebar-container");
+        sidebarContainer.innerHTML="";
 
         const mainButtonContainer=document.createElement("div");
         mainButtonContainer.id="main-buttons-container";
@@ -41,6 +42,7 @@ export const render = {
     },
     mainHeader(num){
         const header=document.querySelector("#header-container");
+        header.innerHTML="";
 
         const title=document.createElement("h1");
         title.id="title";
@@ -59,6 +61,8 @@ export const render = {
     },
     projectOverview(projectList){
         const projectContainer=document.querySelector("#project-container");
+        projectContainer="";
+        projectContainer.classList.remove("list-view");
         for(let i=0; i<projectList.length; i++){
             const projectCard=document.createElement("div");
             projectCard.classList.add("project-card");

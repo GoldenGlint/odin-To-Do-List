@@ -21,4 +21,10 @@ export class controller{
     get projectCounter(){
         return this.#projectCounter;
     }
+
+    renderHomepage(){
+        render.sidebar(this.projectList);
+        render.mainHeader(this.projectCounter);
+        render.projectOverview(this.projectList);
+    }
 }

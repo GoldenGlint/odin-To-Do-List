@@ -71,10 +71,5 @@ console.log(p.counter);
 console.log("--- Remove project ---");
 control.removeProject(c.projectID);
 console.log(control);
-document.addEventListener("DOMContentLoaded", () => {
-render.sidebar(control.projectList);
-render.mainHeader(control.projectCounter);
-render.projectOverview(control.projectList);
-});
 
-console.log(p.projectID);
+//control.renderHomepage();

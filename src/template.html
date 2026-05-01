@@ -10,37 +10,36 @@
     <div id="container">
         
         <div id="header-container">
-            <!--
             <h1 id="title">To-Do-List</h1>
-            <h1 id="project-counter">x Projects</h1>
+            <h1 id="item-counter">x Items</h1>
             <button id="toggle">Dark Mode</button>
-        -->
+            
         </div>
         <div id="sidebar-container">
-            <!--
-            <div id="main-buttons-container">
-                <button id="inbox">Inbox</button>
-                <button id="today">Today</button>
-                <button id="week">This Week</button>
-            </div>
-            <div id="projects">
-                <button id="project-overview">Project Overview</button>
-                <button id="example" class="project-button">example1</button>
-                <button id="example-one" class="project-button">example2</button>
-            </div>
-        -->
+            <button id="project-overview">Project Overview</button>
+            <button id="example" class="project-button">example1</button>
+            <button id="taskOneID" class="task-button">task1</button>
+            <button id="taskTwoID" class="task-button">task2</button>
+            <button id="example-one" class="project-button">example2</button>
+            
         </div>
-        <div id="project-container">
-            <!--
-            <div class="project-card">
-                <h2 class="project-name">Work</h2>
-                <p class="project-description">Work related tasks</p>
-                <p class="project-counter">2 items</p>
-                <ul class="project-items">
-                    <li class="item-name">Code review</li>
-                    <li class="item-name">Team meeting</li>
-                </ul>
-            </div>-->
+        <div id="project-container" class="list-view">
+            
+                <h1 id="project-title">Work</h1>
+                <div class="item-card high-priority">
+                    <h2 class="item-specific-name">Code review</h2>
+                    <p class="item-description">Review pull requests</p>
+                    <p class="item-date">May 1st</p>
+                    <p class="priority">high</p>
+                </div>
+                <div class="item-card low-priority">
+                    <h2 class="item-specific-name">Team Meeting</h2>
+                    <p class="item-description">Weekly Sync</p>
+                    <p class="item-date">May 2nd</p>
+                    <p class="priority">low</p>
+        </div>
+            
+            
 
         </div>
     </div> 
