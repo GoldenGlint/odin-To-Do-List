@@ -73,3 +73,4 @@ control.removeProject(c.projectID);
 console.log(control);
 
 //control.renderHomepage();
+control.renderProject(p);

@@ -1,7 +1,7 @@
 
 export const render = {
     
-    sidebar(arr){
+    sidebar(projectList){
         const sidebarContainer=document.querySelector("#sidebar-container");
         sidebarContainer.innerHTML="";
 
@@ -31,10 +31,10 @@ export const render = {
         projectOverview.textContent="Project Overview";
         projects.appendChild(projectOverview);
 
-        for(let i=0; i<arr.length; i++){
+        for(let i=0; i<projectList.length; i++){
             const project=document.createElement("button");
-            project.dataset.id=arr[i].projectID;
-            project.textContent=arr[i].name;
+            project.dataset.id=projectList[i].projectID;
+            project.textContent=projectList[i].name;
             project.classList.add("project-button");
             projects.appendChild(project);
         }
@@ -174,7 +174,56 @@ export const render = {
             itemCard.append(itemGroup, itemDescription, completedButton)
             itemContainer.appendChild(itemCard);            
         }
+    },
 
+    projectSidebar(projectList, project){
+        const sidebarContainer=document.querySelector("#sidebar-container");
+        sidebarContainer.innerHTML="";
+
+        const mainButtonContainer=document.createElement("div");
+        mainButtonContainer.id="main-buttons-container";
+
+        const inbox=document.createElement("button");
+        inbox.id="inbox";
+        inbox.textContent="Inbox";
+
+        const today=document.createElement("button");
+        today.id="today";
+        today.textContent="Today";
+
+        const thisWeek=document.createElement("button");
+        thisWeek.id="week";
+        thisWeek.textContent="This Week";
+
+        mainButtonContainer.append(inbox, today, thisWeek);
+
+        const projects=document.createElement("div");
+        projects.id="projects";
+        
+
+        const projectOverview=document.createElement("button");
+        projectOverview.id="project-overview";
+        projectOverview.textContent="Project Overview";
+        projects.appendChild(projectOverview);
+
+        for(let i=0; i<projectList.length; i++){
+            const project=document.createElement("button");
+            project.dataset.id=projectList[i].projectID;
+            project.textContent=projectList[i].name;
+            project.classList.add("project-button");
+            projects.appendChild(project);
+            if(projectList[i]==project){
+                const itemList=project.itemList;
+                for(let l=0; l<itemLength.length; l++){
+                    const taskButton=document.createElement("button");
+                    taskButton.classList.add("task-button");
+                    taskButton.textContent=project.itemsList[l].title;
+                    projects.appendChild(taskButton);
+                }
+            }
+        }
+        sidebarContainer.append(mainButtonContainer, projects);
     }
+
    
 }

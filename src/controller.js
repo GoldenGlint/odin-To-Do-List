@@ -27,4 +27,9 @@ export class controller{
         render.mainHeader(this.projectCounter);
         render.projectOverview(this.projectList);
     }
+    renderProject(project){
+        render.itemOverview(project);
+        render.projectSidebar(this.projectList, project);
+        render.projectHeader(project.counter);
+    }
 }
