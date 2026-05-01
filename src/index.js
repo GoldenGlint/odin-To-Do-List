@@ -69,7 +69,7 @@ console.log("--- Remove item ---");
 console.log(p.counter);
 
 console.log("--- Remove project ---");
-control.removeProject(c.projectID);
+
 console.log(control);
 
 //control.renderHomepage();

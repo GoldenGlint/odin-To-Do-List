@@ -205,6 +205,33 @@
     flex-shrink: 0;
 }
 
+#sidebar-container .project-button {
+    background: transparent;
+    border: none;
+    text-align: left;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: var(--sidebar-text);
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+}
+
+#sidebar-container .task-button {
+    background: transparent;
+    border: none;
+    text-align: left;
+    padding: 8px 12px;
+    margin-left: 10px;
+    border-radius: 8px;
+    color: var(--sidebar-text);
+    font-size: 12px;
+    cursor: pointer;
+    width: 100%;
+}
+
+
+
 /*Items list*/
 
 #project-container.list-view {

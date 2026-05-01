@@ -207,14 +207,16 @@ export const render = {
         projects.appendChild(projectOverview);
 
         for(let i=0; i<projectList.length; i++){
-            const project=document.createElement("button");
-            project.dataset.id=projectList[i].projectID;
-            project.textContent=projectList[i].name;
-            project.classList.add("project-button");
-            projects.appendChild(project);
+            const projectButton=document.createElement("button");
+            projectButton.dataset.id=projectList[i].projectID;
+            projectButton.textContent=projectList[i].name;
+            projectButton.classList.add("project-button");
+
+            projects.appendChild(projectButton);
             if(projectList[i]==project){
+                console.log("Hello World");
                 const itemList=project.itemList;
-                for(let l=0; l<itemLength.length; l++){
+                for(let l=0; l<project.counter; l++){
                     const taskButton=document.createElement("button");
                     taskButton.classList.add("task-button");
                     taskButton.textContent=project.itemsList[l].title;
