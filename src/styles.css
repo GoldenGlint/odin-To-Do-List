@@ -11,7 +11,7 @@
     --main-text:    #1C1F2E;
     --main-sub:     #6B7080;
 
-    --card-bg: #ffffff;
+    --card-bg: #FAFBFF;
 
     /*Status Colors*/
     --done: #4CAF50;
@@ -113,6 +113,12 @@
     background-color: var(--sidebar-hover);
 }
 
+#item-counter {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--header-sub);
+}
+
 /*Project Overview Panel*/
 
 #project-overview {
@@ -206,3 +212,119 @@
     flex-direction: column;
     gap: 8px;
 }
+
+#project-title{
+    font: 3rem;
+    margin-bottom: 0;
+
+
+}
+
+.item-card{
+    background: var(--card-bg);
+    border: 1px solid rgba(92, 107, 192, 0.15);
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    gap: 2rem;
+    max-width: 50vw;
+    justify-content: space-between;
+    color: var(--main-text);
+
+}
+
+.item-card.high-priority{
+    border-left-color: var(--high-priorty);
+    border-left-width: 0.5rem;
+}
+.item-card.medium-priority{
+    border-left-color: var(--in-progress);
+    border-left-width: 0.5rem;
+    
+}
+.item-card.low-priority{
+    border-left-color: var(--done);
+    border-left-width: 0.5rem;
+    
+}
+.item-card.cancel-priority{
+    border-left-color: var(--cancelled);
+    border-left-width: 0.5rem;
+
+}
+/**/
+.item-group{
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    gap: 3px;
+    padding: 2px;
+    color: var(--main-text);
+    
+}
+
+.item-specific-name{
+    margin-top: 0;
+    padding-top: 0px;
+    padding-bottom: 2px;
+    margin-bottom: 3px;
+    color: var(--main-text);
+
+}
+
+.item-date{
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--main-sub);
+    padding: 2px;
+    margin: 2px;
+    color: var(--main-text);
+}
+
+.item-priority{
+    padding: 2px;
+    margin: 2px;
+    color: var(--main-text);
+    font-size: 12px;
+}
+
+.item-priority.high-priority{
+    color: var(--high-priorty);
+
+}
+.item-priority.medium-priority{
+    color: var(--in-progress);
+    
+}
+.item-priority.low-priority{
+    color: var(--done);
+    
+}
+.item-priority.cancel-priority{
+    color: var(--cancelled);
+
+}
+
+
+
+/**/
+
+.item-description{
+    margin-top: 0;
+    align-self: center;
+    margin-bottom: 0;
+    color: var(--main-text);
+}
+
+.completed-button{
+    padding: 5px 10px 5px 10px;
+    width: fit-content;
+    height: fit-content;
+    align-self: center;
+    background-color: var(--done);
+    color:var(--header-text);
+    border-radius: 10px;
+    border: transparent;
+
+}
+
