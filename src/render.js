@@ -125,7 +125,7 @@ export const render = {
 
         itemContainer.appendChild(projectTitle);
 
-        const items=project.itemList
+        const items=project.itemsList;
         for(let i=0; i<items.length; i++){
             const itemCard=document.createElement("div");
             itemCard.classList.add("item-card");
@@ -145,19 +145,19 @@ export const render = {
             itemPriority.classList.add("item-priority");
             itemPriority.textContent=items[i].priority;
 
-            if(items[i].priority="high"){
+            if(items[i].priority=="high"){
                 itemCard.classList.add("high-priority");
                 itemPriority.classList.add("high-priority");
             }
-            else if(items[i].priority="low"){
+            else if(items[i].priority=="low"){
                 itemCard.classList.add("low-priority");
                 itemPriority.classList.add("low-priority");
             }
-            else if(items[i].priority="medium"){
+            else if(items[i].priority=="medium"){
                 itemCard.classList.add("medium-priority");
                 itemPriority.classList.add("medium-priority");
             }
-            else if(items[i].priority="cancelled"){
+            else if(items[i].priority=="cancelled"){
                 itemCard.classList.add("cancel-priority");
                 itemPriority.classList.add("cancel-priority");
             }

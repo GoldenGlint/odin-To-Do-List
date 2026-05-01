@@ -65,7 +65,7 @@ console.log("--- Items ---");
 console.log(item1.title, item1.priority, item1.getID);
 
 console.log("--- Remove item ---");
-p.removeItem(item1.getID);
+
 console.log(p.counter);
 
 console.log("--- Remove project ---");
