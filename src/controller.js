@@ -14,6 +14,11 @@ export class controller{
         this.#projectCounter--;
     }
 
+    findProject(ID){
+        const project=this.#projectList.find(project=>project.projectID==ID);
+        return project;
+    }
+
     get projectList(){
         return this.#projectList;
     }
@@ -23,7 +28,9 @@ export class controller{
     }
 
     renderHomepage(){
-        render.sidebar(this.projectList);
+        render.sidebar(this.projectList,  (id) => {
+            const project = this.findProject(id);
+            this.renderProject(project)});
         render.mainHeader(this.projectCounter);
         render.projectOverview(this.projectList);
     }

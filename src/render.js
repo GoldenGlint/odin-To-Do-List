@@ -1,7 +1,7 @@
 import { toggleDarkMode } from "./eventListeners";  
 export const render = {
     
-    sidebar(projectList){
+    sidebar(projectList, onProjectClick){
         const sidebarContainer=document.querySelector("#sidebar-container");
         sidebarContainer.innerHTML="";
 
@@ -37,6 +37,12 @@ export const render = {
             project.textContent=projectList[i].name;
             project.classList.add("project-button");
             projects.appendChild(project);
+            project.addEventListener("click", (e) => {
+              const id=e.target.dataset.id;
+              console.log("clicked id:", id, typeof id);
+              if(id) onProjectClick(id);
+            });
+            
         }
         sidebarContainer.append(mainButtonContainer, projects);
     },

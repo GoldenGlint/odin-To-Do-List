@@ -72,5 +72,5 @@ console.log("--- Remove project ---");
 
 console.log(control);
 
-//control.renderHomepage();
-control.renderProject(p);
+control.renderHomepage();
+//control.renderProject(p);
