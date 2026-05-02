@@ -1,4 +1,4 @@
-
+import { toggleDarkMode } from "./eventListeners";  
 export const render = {
     
     sidebar(projectList){
@@ -55,7 +55,15 @@ export const render = {
 
         const button=document.createElement("button");
         button.id="toggle";
-        button.textContent="Dark Mode";
+        const root=document.querySelector(":root");
+        if(root.classList.contains("dark")){
+            button.textContent="Light Mode";
+        }
+        else{
+            button.textContent="Dark Mode";
+        }
+        
+        button.addEventListener("click", toggleDarkMode);
 
         header.append(title, counter, button);
     },
@@ -110,7 +118,17 @@ export const render = {
 
         const button=document.createElement("button");
         button.id="toggle";
-        button.textContent="Dark Mode";
+        
+        const root=document.querySelector(":root");
+        if(root.classList.contains("dark")){
+            button.textContent="Light Mode";
+        }
+        else{
+            button.textContent="Dark Mode";
+        }
+        
+
+        button.addEventListener("click", toggleDarkMode);
 
         header.append(title, counter, button);
     },
