@@ -30,13 +30,17 @@ export class controller{
     renderHomepage(){
         render.sidebar(this.projectList,  (id) => {
             const project = this.findProject(id);
-            this.renderProject(project)});
+            this.renderProject(project)}
+        );
         render.mainHeader(this.projectCounter);
         render.projectOverview(this.projectList);
     }
     renderProject(project){
         render.itemOverview(project);
-        render.projectSidebar(this.projectList, project);
+        render.projectSidebar(this.projectList, project, (id) => {
+            const project = this.findProject(id);
+            this.renderProject(project)}
+        );
         render.projectHeader(project.counter);
     }
 }

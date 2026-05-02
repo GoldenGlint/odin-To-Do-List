@@ -200,7 +200,7 @@ export const render = {
         }
     },
 
-    projectSidebar(projectList, project){
+    projectSidebar(projectList, project, onProjectClick){
         const sidebarContainer=document.querySelector("#sidebar-container");
         sidebarContainer.innerHTML="";
 
@@ -235,6 +235,11 @@ export const render = {
             projectButton.dataset.id=projectList[i].projectID;
             projectButton.textContent=projectList[i].name;
             projectButton.classList.add("project-button");
+            projectButton.addEventListener("click", (e) => {
+              const id=e.target.dataset.id;
+              console.log("clicked id:", id, typeof id);
+              if(id) onProjectClick(id);
+            });
 
             projects.appendChild(projectButton);
             if(projectList[i]==project){
