@@ -127,11 +127,12 @@
     color: var(--sidebar-sub) !important;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    cursor: default !important;
+    
 }
 
 #project-overview:hover {
     background: transparent !important;
+    cursor: pointer;
 }
 
 #project-container {

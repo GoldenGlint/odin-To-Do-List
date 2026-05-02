@@ -1,7 +1,7 @@
 import { toggleDarkMode } from "./eventListeners";  
 export const render = {
     
-    sidebar(projectList, onProjectClick){
+    sidebar(projectList, onProjectClick, onProjectOverviewClick){
         const sidebarContainer=document.querySelector("#sidebar-container");
         sidebarContainer.innerHTML="";
 
@@ -30,6 +30,7 @@ export const render = {
         projectOverview.id="project-overview";
         projectOverview.textContent="Project Overview";
         projects.appendChild(projectOverview);
+        projectOverview.addEventListener("click", onProjectOverviewClick);
 
         for(let i=0; i<projectList.length; i++){
             const project=document.createElement("button");
@@ -200,7 +201,7 @@ export const render = {
         }
     },
 
-    projectSidebar(projectList, project, onProjectClick){
+    projectSidebar(projectList, project, onProjectClick, onProjectOverviewClick){
         const sidebarContainer=document.querySelector("#sidebar-container");
         sidebarContainer.innerHTML="";
 
@@ -229,6 +230,8 @@ export const render = {
         projectOverview.id="project-overview";
         projectOverview.textContent="Project Overview";
         projects.appendChild(projectOverview);
+
+        projectOverview.addEventListener("click", onProjectOverviewClick);
 
         for(let i=0; i<projectList.length; i++){
             const projectButton=document.createElement("button");

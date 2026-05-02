@@ -30,7 +30,7 @@ export class controller{
     renderHomepage(){
         render.sidebar(this.projectList,  (id) => {
             const project = this.findProject(id);
-            this.renderProject(project)}
+            this.renderProject(project)}, ()=>this.renderHomepage()
         );
         render.mainHeader(this.projectCounter);
         render.projectOverview(this.projectList);
@@ -39,7 +39,7 @@ export class controller{
         render.itemOverview(project);
         render.projectSidebar(this.projectList, project, (id) => {
             const project = this.findProject(id);
-            this.renderProject(project)}
+            this.renderProject(project)}, ()=>this.renderHomepage()
         );
         render.projectHeader(project.counter);
     }
