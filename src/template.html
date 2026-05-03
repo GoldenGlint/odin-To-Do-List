@@ -24,5 +24,19 @@
             
         </div>
     </div> 
+
+    <dialog id="new-project-dialog">
+        <form id="new-project-form">
+            <label for="project-name">Project Name:</label>
+            <input type="text" id="project-name" name="projectName" placeholder="Example Project">
+            <label for="project-description">Project Description:</label>
+            <input type="text" id="project-description" name="projectDescription" placeholder="This is a description.">
+            <div class="project-form-buttons">
+                <button id = "submit-project-button" type="submit">Add Project</button>
+                <button id="cancel-project-button" commandfor="new-project-dialog" command="close">Cancel</button>
+            </div>
+        </form>
+    </dialog>
+
 </body>
 </html>

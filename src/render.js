@@ -112,6 +112,14 @@ export const render = {
         const newProjectButton=document.createElement("button");
         newProjectButton.id="new-project-button";
         newProjectButton.textContent="+Add New Project";
+        newProjectButton.addEventListener("click", () => {
+            const addNewProject=document.querySelector("#new-project-dialog");
+            addNewProject.showModal();
+            const closeButton=document.querySelector("#cancel-project-button");
+            closeButton.addEventListener("click", () =>{
+                addNewProject.close();
+            })
+        })
         projectContainer.append(newProjectButton);
     
 
