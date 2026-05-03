@@ -38,5 +38,31 @@
         </form>
     </dialog>
 
+    <dialog id="new-item-dialog">
+        <form id="new-item-form">
+            <label for="item-name">Item Name:</label>
+            <input type="text" id="item-name" name="itemName" placeholder="Example Item">
+            <label for="item-description">Item Description:</label>
+            <input type="text" id="item-description" name="itemDescription" placeholder="This is a description.">
+            <label for="item-date">Item Date:</label>
+            <input type="text" id="item-date" name="itemDescription" placeholder="Enter Date">
+            <label for="item-priority">Item Priority:</label>
+             <select id="item-priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+                <option value="cancelled">Cancelled</option>
+            </select>
+            <div class="item-form-buttons">
+                <button id = "submit-item-button" type="submit">Add Item</button>
+                <button id="cancel-item-button" commandfor="new-item-dialog" command="close">Cancel</button>
+            </div>
+        </form>
+    </dialog>
+    #title;
+    #description;
+    #dueDate;
+    #priority;
+
 </body>
 </html>

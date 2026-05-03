@@ -123,7 +123,7 @@ export const render = {
             closeButton.addEventListener("click", () =>{
                 addNewProject.close();
             })
-        })
+        });
         projectContainer.append(newProjectButton);
     
 
@@ -222,6 +222,19 @@ export const render = {
         const newItemButton=document.createElement("button");
         newItemButton.id="new-item-button";
         newItemButton.textContent="+Add New Item";
+        newItemButton.addEventListener("click", (e) => {
+            const addNewItem=document.querySelector("#new-item-dialog");
+            addNewItem.showModal();
+            const closeButton=document.querySelector("#cancel-item-button");
+
+            //const addNewProjectForm=document.querySelector("#new-project-form");
+            //addNewProjectForm.addEventListener("submit", (e)=>submitNewProject(e));
+
+            closeButton.addEventListener("click", () =>{
+                addNewItem.close();
+            })
+        });
+
         itemContainer.append(newItemButton);  
     },
 
