@@ -19,6 +19,21 @@ export class controller{
         return project;
     }
 
+    submitNewProject(e){
+
+        console.log("Submit new project");
+        e.preventDefault();
+        const newProjectInfo=e.target;
+
+        const newProjectData=new FormData(newProjectInfo);
+        const projectTitle=newProjectData.get("projectName");
+        const projectDescription=newProjectData.get("projectDescription");
+        const newProject=new project(projectTitle, projectDescription);
+        this.addProject(newProject);
+        this.renderProject(newProject);    
+
+    }
+
     get projectList(){
         return this.#projectList;
     }
@@ -33,7 +48,7 @@ export class controller{
             this.renderProject(project)}, ()=>this.renderHomepage()
         );
         render.mainHeader(this.projectCounter);
-        render.projectOverview(this.projectList);
+        render.projectOverview(this.projectList, (e)=>this.submitNewProject(e));
     }
     renderProject(project){
         render.itemOverview(project);

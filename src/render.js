@@ -74,7 +74,7 @@ export const render = {
 
         header.append(title, counter, button);
     },
-    projectOverview(projectList){
+    projectOverview(projectList, submitNewProject){
         const projectContainer=document.querySelector("#project-container");
         projectContainer.innerHTML="";
         projectContainer.classList.remove("list-view");
@@ -112,10 +112,14 @@ export const render = {
         const newProjectButton=document.createElement("button");
         newProjectButton.id="new-project-button";
         newProjectButton.textContent="+Add New Project";
-        newProjectButton.addEventListener("click", () => {
+        newProjectButton.addEventListener("click", (e) => {
             const addNewProject=document.querySelector("#new-project-dialog");
             addNewProject.showModal();
             const closeButton=document.querySelector("#cancel-project-button");
+
+            const addNewProjectForm=document.querySelector("#new-project-form");
+            addNewProjectForm.addEventListener("submit", (e)=>submitNewProject(e));
+
             closeButton.addEventListener("click", () =>{
                 addNewProject.close();
             })
