@@ -106,8 +106,14 @@ export const render = {
             }
             projectCard.append(projectName, projectDescription, projectCounter, projectItems);
             projectContainer.appendChild(projectCard);
+            
         }
-        
+
+        const newProjectButton=document.createElement("button");
+        newProjectButton.id="new-project-button";
+        newProjectButton.textContent="+Add New Project";
+        projectContainer.append(newProjectButton);
+    
 
     },
     projectHeader(num){
@@ -197,8 +203,14 @@ export const render = {
             completedButton.classList.add("completed-button");
 
             itemCard.append(itemGroup, itemDescription, completedButton)
-            itemContainer.appendChild(itemCard);            
+            itemContainer.appendChild(itemCard);    
+                  
         }
+        
+        const newItemButton=document.createElement("button");
+        newItemButton.id="new-item-button";
+        newItemButton.textContent="+Add New Item";
+        itemContainer.append(newItemButton);  
     },
 
     projectSidebar(projectList, project, onProjectClick, onProjectOverviewClick){
