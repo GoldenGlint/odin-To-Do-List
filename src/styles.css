@@ -472,3 +472,88 @@
 #cancel-project-button:hover {
     background: var(--sidebar-bg);
 }
+
+#new-item-dialog {
+    border: none;
+    border-radius: 12px;
+    padding: 0;
+    background: var(--card-bg);
+    color: var(--main-text);
+    width: 400px;
+}
+
+#new-item-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+#new-item-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px;
+}
+
+#new-item-form label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--main-sub);
+}
+
+#new-item-form input,
+#new-item-form select {
+    padding: 10px 12px;
+    border: 1px solid var(--sidebar-sub);
+    border-radius: 8px;
+    font-size: 14px;
+    background: var(--main-bg);
+    color: var(--main-text);
+    outline: none;
+    margin-bottom: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#new-item-form input:focus,
+#new-item-form select:focus {
+    border-color: var(--header-bg);
+}
+
+#new-item-form select option {
+    background: var(--main-bg);
+    color: var(--main-text);
+}
+
+.item-form-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+#submit-item-button {
+    background: var(--header-bg);
+    color: var(--header-text);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#submit-item-button:hover {
+    opacity: 0.9;
+}
+
+#cancel-item-button {
+    background: transparent;
+    color: var(--main-sub);
+    border: 1px solid var(--sidebar-sub);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#cancel-item-button:hover {
+    background: var(--sidebar-bg);
+}
