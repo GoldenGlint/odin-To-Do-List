@@ -30,6 +30,8 @@ export class controller{
         const projectDescription=newProjectData.get("projectDescription");
         const newProject=new project(projectTitle, projectDescription);
         this.addProject(newProject);
+        const dialog = document.querySelector("#new-project-dialog");
+        dialog.close();
         this.renderProject(newProject);    
 
     }
@@ -49,6 +51,9 @@ export class controller{
         const itemPriority=newItemData.get("itemPriority");
         const newItem=new item(itemTitle, itemDescription, itemDate, itemPriority);
         project.addItem(newItem);
+        
+        const dialog = document.querySelector("#new-item-dialog");
+        dialog.close();
         this.renderProject(project);
            
 
