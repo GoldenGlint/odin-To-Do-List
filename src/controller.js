@@ -34,6 +34,26 @@ export class controller{
 
     }
 
+    submitNewItem(e, project){
+
+
+        console.log("Submit new item");
+        e.preventDefault();
+        
+        const newItemInfo=e.target;
+
+        const newItemData=new FormData(newItemInfo);
+        const itemTitle=newItemData.get("itemName");
+        const itemDescription=newItemData.get("itemDescription");
+        const itemDate=newItemData.get("itemDate");
+        const itemPriority=newItemData.get("itemPriority");
+        const newItem=new item(itemTitle, itemDescription, itemDate, itemPriority);
+        project.addItem(newItem);
+        this.renderProject(project);
+           
+
+    }
+
     get projectList(){
         return this.#projectList;
     }
@@ -51,7 +71,7 @@ export class controller{
         render.projectOverview(this.projectList, (e)=>this.submitNewProject(e));
     }
     renderProject(project){
-        render.itemOverview(project);
+        render.itemOverview(project, (e)=>this.submitNewItem(e, project));
         render.projectSidebar(this.projectList, project, (id) => {
             const project = this.findProject(id);
             this.renderProject(project)}, ()=>this.renderHomepage()

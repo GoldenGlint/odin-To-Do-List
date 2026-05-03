@@ -157,7 +157,7 @@ export const render = {
 
         header.append(title, counter, button);
     },
-    itemOverview(project){
+    itemOverview(project, submitNewItem){
         const itemContainer=document.querySelector("#project-container");
         itemContainer.innerHTML="";
         itemContainer.classList.add("list-view");
@@ -227,8 +227,8 @@ export const render = {
             addNewItem.showModal();
             const closeButton=document.querySelector("#cancel-item-button");
 
-            //const addNewProjectForm=document.querySelector("#new-project-form");
-            //addNewProjectForm.addEventListener("submit", (e)=>submitNewProject(e));
+            const addNewItemForm=document.querySelector("#new-item-form");
+            addNewItemForm.addEventListener("submit", (e)=>submitNewItem(e, project));
 
             closeButton.addEventListener("click", () =>{
                 addNewItem.close();
