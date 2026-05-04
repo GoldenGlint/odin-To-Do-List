@@ -72,7 +72,7 @@ export class controller{
             const project = this.findProject(id);
             this.renderProject(project)}, ()=>this.renderHomepage()
         );
-        render.mainHeader(this.projectCounter);
+        render.mainHeader(this.projectCounter, () => this.renderHomepage());
         render.projectOverview(this.projectList, (e)=>this.submitNewProject(e));
     }
     renderProject(project){
@@ -81,6 +81,6 @@ export class controller{
             const project = this.findProject(id);
             this.renderProject(project)}, ()=>this.renderHomepage()
         );
-        render.projectHeader(project.counter);
+        render.projectHeader(project.counter, () => this.renderHomepage());
     }
 }

@@ -47,13 +47,18 @@ export const render = {
         }
         sidebarContainer.append(mainButtonContainer, projects);
     },
-    mainHeader(num){
+    mainHeader(num, renderHomepage){
         const header=document.querySelector("#header-container");
         header.innerHTML="";
 
         const title=document.createElement("h1");
         title.id="title";
         title.textContent="To-Do-List";
+        title.style.cursor = "pointer"; 
+
+        title.onclick = () => {
+            renderHomepage();
+        }
 
         const counter=document.createElement("h1");
         const text=num + " Projects";
@@ -128,13 +133,18 @@ export const render = {
     
 
     },
-    projectHeader(num){
+    projectHeader(num, renderHomepage){
         const header=document.querySelector("#header-container");
         header.innerHTML="";
 
         const title=document.createElement("h1");
         title.id="title";
         title.textContent="To-Do-List";
+        title.style.cursor = "pointer"; 
+
+        title.onclick = () => {
+            renderHomepage();
+        }
 
         const counter=document.createElement("h1");
         const text=num + " Items";
