@@ -227,17 +227,28 @@ export const render = {
                 itemCard.classList.add("cancel-priority");
                 itemPriority.classList.add("cancel-priority");
             }
+
+            
+
             itemGroup.append(itemSpecificName, itemDate, itemPriority);
             
             const itemDescription=document.createElement("p");
             itemDescription.textContent=items[i].description;
             itemDescription.classList.add("item-description");
 
+            const removeItemButton=document.createElement("button");
+            removeItemButton.textContent="Remove Item";
+            removeItemButton.classList.add("remove-item-button");
+
             const completedButton=document.createElement("button");
-            completedButton.textContent="completed";
+            completedButton.textContent="Complete Item";
             completedButton.classList.add("completed-button");
 
-            itemCard.append(itemGroup, itemDescription, completedButton)
+            const buttonGroup = document.createElement("div");
+            buttonGroup.classList.add("item-button-group");
+            buttonGroup.append(completedButton, removeItemButton);
+
+            itemCard.append(itemGroup, itemDescription, buttonGroup);
             itemContainer.appendChild(itemCard);    
                   
         }

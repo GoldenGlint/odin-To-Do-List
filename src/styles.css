@@ -387,16 +387,21 @@
     color: var(--main-text);
 }
 
-.completed-button{
-    padding: 5px 10px 5px 10px;
+.completed-button {
+    background: transparent;
+    border: 1px solid var(--done);
+    color: var(--done);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
     width: fit-content;
-    height: fit-content;
-    align-self: center;
-    background-color: var(--done);
-    color:var(--header-text);
-    border-radius: 10px;
-    border: transparent;
+    transition: all 0.15s ease;
+}
 
+.completed-button:hover {
+    background: var(--done);
+    color: var(--header-text);
 }
 
 /*From Styling*/
@@ -580,4 +585,32 @@
 .remove-project-button:hover {
     background: var(--high-priorty);
     color: var(--header-text);
+}
+
+.remove-item-button {
+    background: transparent;
+    border: 1px solid var(--high-priorty);
+    color: var(--high-priorty);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    width: fit-content;
+    transition: all 0.15s ease;
+}
+
+.remove-item-button:hover {
+    background: var(--high-priorty);
+    color: var(--header-text);
+}
+
+.item-button-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.completed-button, .remove-item-button {
+    width: 120px;
+    text-align: center;
 }
