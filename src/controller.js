@@ -19,6 +19,12 @@ export class controller{
         return project;
     }
 
+    navigateFromCard(ID){
+        const project=this.findProject(ID);
+        console.log(ID);
+        this.renderProject(project);
+    }
+
     submitNewProject(e){
 
         console.log("Submit new project");
@@ -73,7 +79,7 @@ export class controller{
             this.renderProject(project)}, ()=>this.renderHomepage()
         );
         render.mainHeader(this.projectCounter, () => this.renderHomepage());
-        render.projectOverview(this.projectList, (e)=>this.submitNewProject(e));
+        render.projectOverview(this.projectList, (e)=>this.submitNewProject(e), (ID)=>this.navigateFromCard(ID));
     }
     renderProject(project){
         render.itemOverview(project, (e)=>this.submitNewItem(e, project));

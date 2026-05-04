@@ -34,7 +34,7 @@ export const render = {
 
         for(let i=0; i<projectList.length; i++){
             const project=document.createElement("button");
-            project.dataset.id=projectList[i].projectID;
+            project.dataset.id=projectList[i].getID;
             project.textContent=projectList[i].name;
             project.classList.add("project-button");
             projects.appendChild(project);
@@ -79,14 +79,14 @@ export const render = {
 
         header.append(title, counter, button);
     },
-    projectOverview(projectList, submitNewProject){
+    projectOverview(projectList, submitNewProject, navigateFromCard){
         const projectContainer=document.querySelector("#project-container");
         projectContainer.innerHTML="";
         projectContainer.classList.remove("list-view");
         for(let i=0; i<projectList.length; i++){
             const projectCard=document.createElement("div");
             projectCard.classList.add("project-card");
-            projectCard.dataset.id=projectList[i].getID;
+            projectCard.dataset.id=projectList[i].projectID;
 
             const projectName=document.createElement("h2");
             projectName.textContent=projectList[i].name;
@@ -110,6 +110,9 @@ export const render = {
                 projectItems.appendChild(item);
             }
             projectCard.append(projectName, projectDescription, projectCounter, projectItems);
+
+            projectCard.addEventListener("click", () => navigateFromCard(projectList[i].projectID));
+
             projectContainer.appendChild(projectCard);
             
         }
