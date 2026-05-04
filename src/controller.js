@@ -65,6 +65,12 @@ export class controller{
 
     }
 
+    removeProjectAction(ID){
+       
+        this.removeProject(ID);
+        this.renderHomepage();
+    }
+
     get projectList(){
         return this.#projectList;
     }
@@ -79,7 +85,7 @@ export class controller{
             this.renderProject(project)}, ()=>this.renderHomepage()
         );
         render.mainHeader(this.projectCounter, () => this.renderHomepage());
-        render.projectOverview(this.projectList, (e)=>this.submitNewProject(e), (ID)=>this.navigateFromCard(ID));
+        render.projectOverview(this.projectList, (e)=>this.submitNewProject(e), (ID)=>this.navigateFromCard(ID), (ID)=>this.removeProjectAction(ID));
     }
     renderProject(project){
         render.itemOverview(project, (e)=>this.submitNewItem(e, project));

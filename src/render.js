@@ -79,7 +79,7 @@ export const render = {
 
         header.append(title, counter, button);
     },
-    projectOverview(projectList, submitNewProject, navigateFromCard){
+    projectOverview(projectList, submitNewProject, navigateFromCard, removeProjectAction){
         const projectContainer=document.querySelector("#project-container");
         projectContainer.innerHTML="";
         projectContainer.classList.remove("list-view");
@@ -109,7 +109,17 @@ export const render = {
                 item.classList.add("item-name");
                 projectItems.appendChild(item);
             }
-            projectCard.append(projectName, projectDescription, projectCounter, projectItems);
+
+            const removeProjectButton=document.createElement("button");
+            removeProjectButton.textContent="Remove Project";
+            removeProjectButton.classList.add("remove-project-button");
+
+            removeProjectButton.addEventListener("click", (e)=>{
+                e.stopPropagation();
+                removeProjectAction(projectList[i].projectID);
+            });
+
+            projectCard.append(projectName, projectDescription, projectCounter, projectItems, removeProjectButton);
 
             projectCard.addEventListener("click", () => navigateFromCard(projectList[i].projectID));
 
