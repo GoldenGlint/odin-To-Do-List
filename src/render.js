@@ -264,11 +264,15 @@ export const render = {
             const closeButton=document.querySelector("#cancel-item-button");
 
             const addNewItemForm=document.querySelector("#new-item-form");
-            addNewItemForm.addEventListener("submit", (e)=>submitNewItem(e, project));
+            addNewItemForm.addEventListener("submit", (e)=>{
+                submitNewItem(e, project);
+                addNewItemForm.reset();
+
+            }, {once: true});
 
             closeButton.addEventListener("click", () =>{
                 addNewItem.close();
-            })
+            }, {once: true})
         });
 
         itemContainer.append(newItemButton);  
