@@ -34,7 +34,7 @@ export const render = {
 
         for(let i=0; i<projectList.length; i++){
             const project=document.createElement("button");
-            project.dataset.id=projectList[i].getID;
+            project.dataset.id=projectList[i].projectID;
             project.textContent=projectList[i].name;
             project.classList.add("project-button");
             projects.appendChild(project);
