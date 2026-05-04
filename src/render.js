@@ -180,7 +180,7 @@ export const render = {
 
         header.append(title, counter, button);
     },
-    itemOverview(project, submitNewItem){
+    itemOverview(project, submitNewItem, removeItemAction){
         const itemContainer=document.querySelector("#project-container");
         itemContainer.innerHTML="";
         itemContainer.classList.add("list-view");
@@ -195,6 +195,7 @@ export const render = {
         for(let i=0; i<items.length; i++){
             const itemCard=document.createElement("div");
             itemCard.classList.add("item-card");
+            itemCard.dataset.id=items[i].getID;
 
             const itemGroup=document.createElement("div");;
             itemGroup.classList.add("item-group");
@@ -239,6 +240,7 @@ export const render = {
             const removeItemButton=document.createElement("button");
             removeItemButton.textContent="Remove Item";
             removeItemButton.classList.add("remove-item-button");
+            removeItemButton.addEventListener("click", ()=>removeItemAction(items[i].getID, project));
 
             const completedButton=document.createElement("button");
             completedButton.textContent="Complete Item";
