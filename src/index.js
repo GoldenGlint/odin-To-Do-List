@@ -75,3 +75,4 @@ console.log(control);
 console.log("--- Run the page ---")
 control.renderHomepage();
 
+console.log("test");
