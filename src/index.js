@@ -49,10 +49,17 @@ const c = new project("Personal", "Personal tasks");
 const item1 = new item("Code review", "Review pull requests", new Date(2026,4,6), "high");
 const item2 = new item("Team meeting", "Weekly sync", new Date(2026,6,5), "low");
 const item3 = new item("Grocery run", "Buy food", new Date(2026,4,6), "medium");
+const item4 = new item("Buy groceries", "Get food for the week", new Date(2026, 4, 7), "low");
+const item5 = new item("Submit report", "Send weekly report to manager", new Date(2026, 4, 9), "high");
+const item6 = new item("Dentist appointment", "Annual checkup", new Date(2026, 4, 12), "medium");
+
 
 p.addItem(item1);
 p.addItem(item2);
 c.addItem(item3);
+p.addItem(item4);
+c.addItem(item5);
+p.addItem(item6);
 
 control.addProject(p);
 control.addProject(c);

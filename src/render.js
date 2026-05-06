@@ -2,7 +2,7 @@ import { toggleDarkMode } from "./eventListeners";
 import { format, compareAsc } from "date-fns";
 export const render = {
     
-    sidebar(projectList, onProjectClick, onProjectOverviewClick, renderToday){
+    sidebar(projectList, onProjectClick, onProjectOverviewClick, renderToday, renderWeek){
         const sidebarContainer=document.querySelector("#sidebar-container");
         sidebarContainer.innerHTML="";
 
@@ -21,6 +21,7 @@ export const render = {
         const thisWeek=document.createElement("button");
         thisWeek.id="week";
         thisWeek.textContent="This Week";
+        thisWeek.addEventListener("click", ()=>renderWeek());
 
         mainButtonContainer.append(inbox, today, thisWeek);
 
@@ -280,7 +281,7 @@ export const render = {
         itemContainer.append(newItemButton);  
     },
 
-    projectSidebar(projectList, project, onProjectClick, onProjectOverviewClick, renderToday){
+    projectSidebar(projectList, project, onProjectClick, onProjectOverviewClick, renderToday, renderWeek){
         const sidebarContainer=document.querySelector("#sidebar-container");
         sidebarContainer.innerHTML="";
 
@@ -300,6 +301,8 @@ export const render = {
         const thisWeek=document.createElement("button");
         thisWeek.id="week";
         thisWeek.textContent="This Week";
+
+        thisWeek.addEventListener("click", ()=>renderWeek());
 
         mainButtonContainer.append(inbox, today, thisWeek);
 
@@ -415,6 +418,83 @@ export const render = {
         }
         
     },
+    itemsWeek(itemsList, removeItemAction){
+        const itemContainer=document.querySelector("#project-container");
+        itemContainer.innerHTML="";
+        itemContainer.classList.add("list-view");
+
+        const itemTitle=document.createElement("h1");
+        itemTitle.id="project-title";
+        itemTitle.textContent="Due This Week";
+
+        itemContainer.appendChild(itemTitle);
+
+        
+        for(let i=0; i<itemsList.length; i++){
+            const itemCard=document.createElement("div");
+            itemCard.classList.add("item-card");
+            itemCard.dataset.id=itemsList[i].getID;
+
+            const itemGroup=document.createElement("div");;
+            itemGroup.classList.add("item-group");
+
+            const itemSpecificName=document.createElement("h2");
+            itemSpecificName.classList.add("item-specific-name");
+            itemSpecificName.textContent=itemsList[i].title;
+
+            const itemDate=document.createElement("h2");
+            itemDate.classList.add("item-date");
+            itemDate.textContent=format(itemsList[i].dueDate, "LLLL do");
+
+            const itemPriority=document.createElement("h2");
+            itemPriority.classList.add("item-priority");
+            itemPriority.textContent=itemsList[i].priority;
+
+            if(itemsList[i].priority=="high"){
+                itemCard.classList.add("high-priority");
+                itemPriority.classList.add("high-priority");
+            }
+            else if(itemsList[i].priority=="low"){
+                itemCard.classList.add("low-priority");
+                itemPriority.classList.add("low-priority");
+            }
+            else if(itemsList[i].priority=="medium"){
+                itemCard.classList.add("medium-priority");
+                itemPriority.classList.add("medium-priority");
+            }
+            else if(itemsList[i].priority=="cancelled"){
+                itemCard.classList.add("cancel-priority");
+                itemPriority.classList.add("cancel-priority");
+            }
+
+            
+
+            itemGroup.append(itemSpecificName, itemDate, itemPriority);
+            
+            const itemDescription=document.createElement("p");
+            itemDescription.textContent=itemsList[i].description;
+            itemDescription.classList.add("item-description");
+
+            const removeItemButton = document.createElement("button");
+            removeItemButton.textContent = "Remove Item";
+            removeItemButton.classList.add("remove-item-button");
+            removeItemButton.addEventListener("click", () => removeItemAction(itemsList[i].getID, itemsList[i].project));
+
+            const completedButton=document.createElement("button");
+            completedButton.textContent="Complete Item";
+            completedButton.classList.add("completed-button");
+
+            const buttonGroup = document.createElement("div");
+            buttonGroup.classList.add("item-button-group");
+            buttonGroup.append(completedButton, removeItemButton);
+
+            itemCard.append(itemGroup, itemDescription, buttonGroup);
+            itemContainer.appendChild(itemCard);    
+                  
+        }
+        
+    },
+    
 
 
    

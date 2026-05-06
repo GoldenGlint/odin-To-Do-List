@@ -1,6 +1,6 @@
 import {project, item} from "./classes.js";
 import {render} from "./render.js";
-import { format, compareAsc,isPast, isFuture, isToday, parseISO  } from "date-fns";
+import { format, compareAsc,isPast, isFuture, isToday, parseISO, addWeeks, isAfter, isBefore  } from "date-fns";
 
 export class controller{
     #projectList=[];
@@ -33,6 +33,23 @@ export class controller{
             }
         }
         return itemsToday;
+    }
+
+    findWeekProject(){
+        const projects=this.projectList;
+        let itemsWeek=[];
+        const today=new Date();
+        const week=addWeeks(today, 1);
+        for(let i=0; i<projects.length; i++){
+            let items=projects[i].itemsList;
+            for(let l=0; l<items.length; l++){
+                if(isToday(items[l].dueDate)||(isAfter(items[l].dueDate, today)&&isBefore(items[l].dueDate, week))){
+                    itemsWeek.push(items[l]);
+                }
+            }
+        }
+        console.log(itemsWeek);
+        return itemsWeek;
     }
 
     navigateFromCard(ID){
@@ -105,8 +122,10 @@ export class controller{
     renderHomepage(){
         render.sidebar(this.projectList,  (id) => {
             const project = this.findProject(id);
-            this.renderProject(project)}, ()=>this.renderHomepage(),
-            ()=>this.renderToday()
+            this.renderProject(project)}, 
+            ()=>this.renderHomepage(),
+            ()=>this.renderToday(),
+            ()=>this.renderWeek()
         );
         render.mainHeader(this.projectCounter, () => this.renderHomepage());
         render.projectOverview(this.projectList, (e)=>this.submitNewProject(e), (ID)=>this.navigateFromCard(ID), (ID)=>this.removeProjectAction(ID));
@@ -115,8 +134,10 @@ export class controller{
         render.itemOverview(project, (e)=>this.submitNewItem(e, project), (ID, project)=>this.removeItemAction(ID, project));
         render.projectSidebar(this.projectList, project, (id) => {
             const project = this.findProject(id);
-            this.renderProject(project)}, ()=>this.renderHomepage(),
-            ()=>this.renderToday()
+            this.renderProject(project)}, 
+            ()=>this.renderHomepage(),
+            ()=>this.renderToday(),
+            ()=>this.renderWeek()
         );
         render.projectHeader(project.counter, () => this.renderHomepage());
     }
@@ -125,7 +146,23 @@ export class controller{
         render.itemsToday(itemToday, (ID, project) => this.removeItemAction(ID, project))
         render.sidebar(this.projectList,  (id) => {
             const project = this.findProject(id);
-            this.renderProject(project)}, ()=>this.renderHomepage(), ()=>this.renderToday()
+            this.renderProject(project)}, 
+            ()=>this.renderHomepage(), 
+            ()=>this.renderToday(), 
+            ()=>this.renderWeek()
+        );
+        render.mainHeader(this.projectCounter, () => this.renderHomepage());
+        
+    }
+    renderWeek(){
+        const itemWeek=this.findWeekProject();
+        render.itemsWeek(itemWeek, (ID, project) => this.removeItemAction(ID, project))
+        render.sidebar(this.projectList,  (id) => {
+            const project = this.findProject(id);
+            this.renderProject(project)}, 
+            ()=>this.renderHomepage(), 
+            ()=>this.renderToday(), 
+            ()=>this.renderWeek()
         );
         render.mainHeader(this.projectCounter, () => this.renderHomepage());
         
