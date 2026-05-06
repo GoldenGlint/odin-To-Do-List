@@ -339,7 +339,7 @@ export const render = {
         }
         sidebarContainer.append(mainButtonContainer, projects);
     },
-    itemsToday(itemsList){
+    itemsToday(itemsList, removeItemAction){
         const itemContainer=document.querySelector("#project-container");
         itemContainer.innerHTML="";
         itemContainer.classList.add("list-view");
@@ -396,10 +396,10 @@ export const render = {
             itemDescription.textContent=itemsList[i].description;
             itemDescription.classList.add("item-description");
 
-            /*const removeItemButton=document.createElement("button");
-            removeItemButton.textContent="Remove Item";
+            const removeItemButton = document.createElement("button");
+            removeItemButton.textContent = "Remove Item";
             removeItemButton.classList.add("remove-item-button");
-            removeItemButton.addEventListener("click", ()=>removeItemAction(items[i].getID, project));*/
+            removeItemButton.addEventListener("click", () => removeItemAction(itemsList[i].getID, itemsList[i].project));
 
             const completedButton=document.createElement("button");
             completedButton.textContent="Complete Item";
@@ -407,7 +407,7 @@ export const render = {
 
             const buttonGroup = document.createElement("div");
             buttonGroup.classList.add("item-button-group");
-            buttonGroup.append(completedButton/*,removeItemButton*/);
+            buttonGroup.append(completedButton, removeItemButton);
 
             itemCard.append(itemGroup, itemDescription, buttonGroup);
             itemContainer.appendChild(itemCard);    

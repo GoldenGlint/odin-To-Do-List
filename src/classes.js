@@ -12,6 +12,7 @@ export class project{
         this.#description=description;
     }
     addItem(item){
+        item.project = this;
         this.#itemsList.push(item);
         this.#counter++;
     }
@@ -57,6 +58,8 @@ export class item{
     #description;
     #dueDate;
     #priority;
+    #project;
+    
     
     constructor(title, description, dueDate, priority, options = {}){
 
@@ -65,6 +68,7 @@ export class item{
         this.#description=description;
         this.#dueDate=typeof dueDate === "string" ? parseISO(dueDate) : dueDate;
         this.#priority=priority;
+        this.#project = null;
 
         //optional things
 
@@ -104,5 +108,13 @@ export class item{
 
     get getID(){
         return this.#ID;
+    }
+
+    get project() { 
+        return this.#project; 
+    }
+
+    set project(p) { 
+        this.#project = p; 
     }
 }

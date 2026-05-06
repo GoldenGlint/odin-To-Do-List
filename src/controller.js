@@ -122,7 +122,7 @@ export class controller{
     }
     renderToday(){
         const itemToday=this.findTodayProject();
-        render.itemsToday(itemToday)
+        render.itemsToday(itemToday, (ID, project) => this.removeItemAction(ID, project))
         render.sidebar(this.projectList,  (id) => {
             const project = this.findProject(id);
             this.renderProject(project)}, ()=>this.renderHomepage(), ()=>this.renderToday()
