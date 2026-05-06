@@ -104,10 +104,16 @@ export class controller{
         this.renderHomepage();
     }
 
-    removeItemAction(itemID, project){
+    removeItemAction(itemID, project, view="project"){
 
         project.removeItem(itemID);
-        this.renderProject(project);
+        if(view=="today"){
+        this.renderToday();
+        } else if(view=="week"){
+            this.renderWeek();
+        } else {
+            this.renderProject(project);
+        }
 
     }
 
@@ -143,7 +149,7 @@ export class controller{
     }
     renderToday(){
         const itemToday=this.findTodayProject();
-        render.itemsToday(itemToday, (ID, project) => this.removeItemAction(ID, project))
+        render.itemsToday(itemToday, (ID, project) => this.removeItemAction(ID, project, "today"))
         render.sidebar(this.projectList,  (id) => {
             const project = this.findProject(id);
             this.renderProject(project)}, 
@@ -156,7 +162,7 @@ export class controller{
     }
     renderWeek(){
         const itemWeek=this.findWeekProject();
-        render.itemsWeek(itemWeek, (ID, project) => this.removeItemAction(ID, project))
+        render.itemsWeek(itemWeek, (ID, project) => this.removeItemAction(ID, project, "week"))
         render.sidebar(this.projectList,  (id) => {
             const project = this.findProject(id);
             this.renderProject(project)}, 
