@@ -1,6 +1,4 @@
-
-
-
+import { format, parseISO } from "date-fns";
 
 export class project{
     #name;
@@ -61,10 +59,11 @@ export class item{
     #priority;
     
     constructor(title, description, dueDate, priority, options = {}){
+
         this.#ID=crypto.randomUUID();
         this.#title=title;
         this.#description=description;
-        this.#dueDate=new Date(dueDate);
+        this.#dueDate=typeof dueDate === "string" ? parseISO(dueDate) : dueDate;
         this.#priority=priority;
 
         //optional things

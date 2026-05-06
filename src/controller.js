@@ -1,5 +1,7 @@
 import {project, item} from "./classes.js";
 import {render} from "./render.js";
+import { format, compareAsc,isPast, isFuture, isToday, parseISO  } from "date-fns";
+
 export class controller{
     #projectList=[];
     #projectCounter=0;
@@ -17,6 +19,20 @@ export class controller{
     findProject(ID){
         const project=this.#projectList.find(project=>project.projectID==ID);
         return project;
+    }
+
+    findTodayProject(){
+        const projects=this.projectList;
+        let itemsToday=[];
+        for(let i=0; i<projects.length; i++){
+            let items=projects[i].itemsList;
+            for(let l=0; l<items.length; l++){
+                if(isToday(items[l].dueDate)){
+                    itemsToday.push(items[l]);
+                }
+            }
+        }
+        return itemsToday;
     }
 
     navigateFromCard(ID){
@@ -89,7 +105,8 @@ export class controller{
     renderHomepage(){
         render.sidebar(this.projectList,  (id) => {
             const project = this.findProject(id);
-            this.renderProject(project)}, ()=>this.renderHomepage()
+            this.renderProject(project)}, ()=>this.renderHomepage(),
+            ()=>this.renderToday()
         );
         render.mainHeader(this.projectCounter, () => this.renderHomepage());
         render.projectOverview(this.projectList, (e)=>this.submitNewProject(e), (ID)=>this.navigateFromCard(ID), (ID)=>this.removeProjectAction(ID));
@@ -98,8 +115,19 @@ export class controller{
         render.itemOverview(project, (e)=>this.submitNewItem(e, project), (ID, project)=>this.removeItemAction(ID, project));
         render.projectSidebar(this.projectList, project, (id) => {
             const project = this.findProject(id);
-            this.renderProject(project)}, ()=>this.renderHomepage()
+            this.renderProject(project)}, ()=>this.renderHomepage(),
+            ()=>this.renderToday()
         );
         render.projectHeader(project.counter, () => this.renderHomepage());
+    }
+    renderToday(){
+        const itemToday=this.findTodayProject();
+        render.itemsToday(itemToday)
+        render.sidebar(this.projectList,  (id) => {
+            const project = this.findProject(id);
+            this.renderProject(project)}, ()=>this.renderHomepage(), ()=>this.renderToday()
+        );
+        render.mainHeader(this.projectCounter, () => this.renderHomepage());
+        
     }
 }
