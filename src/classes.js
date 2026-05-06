@@ -64,7 +64,7 @@ export class item{
         this.#ID=crypto.randomUUID();
         this.#title=title;
         this.#description=description;
-        this.#dueDate=dueDate;
+        this.#dueDate=new Date(dueDate);
         this.#priority=priority;
 
         //optional things

@@ -46,9 +46,9 @@ const control = new controller();
 const p = new project("Work", "Work related tasks");
 const c = new project("Personal", "Personal tasks");
 
-const item1 = new item("Code review", "Review pull requests", "May 1st", "high");
-const item2 = new item("Team meeting", "Weekly sync", "May 2nd", "low");
-const item3 = new item("Grocery run", "Buy food", "May 3rd", "medium");
+const item1 = new item("Code review", "Review pull requests", new Date("2026-05-06"), "high");
+const item2 = new item("Team meeting", "Weekly sync", new Date("2026-05-07"), "low");
+const item3 = new item("Grocery run", "Buy food", new Date("2026-05-16"), "medium");
 
 p.addItem(item1);
 p.addItem(item2);

@@ -1,4 +1,5 @@
 import { toggleDarkMode } from "./eventListeners";  
+import { format, compareAsc } from "date-fns";
 export const render = {
     
     sidebar(projectList, onProjectClick, onProjectOverviewClick){
@@ -206,7 +207,7 @@ export const render = {
 
             const itemDate=document.createElement("h2");
             itemDate.classList.add("item-date");
-            itemDate.textContent=items[i].dueDate;
+            itemDate.textContent=format(items[i].dueDate, "LLLL do");
 
             const itemPriority=document.createElement("h2");
             itemPriority.classList.add("item-priority");
