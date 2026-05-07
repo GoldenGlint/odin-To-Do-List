@@ -4,12 +4,13 @@ export class project{
     #name;
     #itemsList=[];
     #counter=0;
-    #projectID=crypto.randomUUID();
+    #projectID;
     #description;
 
-    constructor(name, description){
+    constructor(name, description, projectID = crypto.randomUUID()){
         this.#name=name;
         this.#description=description;
+        this.#projectID = projectID;
     }
     addItem(item){
         item.project = this;
@@ -61,9 +62,9 @@ export class item{
     #project;
     
     
-    constructor(title, description, dueDate, priority, options = {}){
+    constructor(title, description, dueDate, priority, id = crypto.randomUUID(), options = {}){
 
-        this.#ID=crypto.randomUUID();
+        this.#ID=id;
         this.#title=title;
         this.#description=description;
         this.#dueDate=typeof dueDate === "string" ? parseISO(dueDate) : dueDate;
@@ -118,3 +119,5 @@ export class item{
         this.#project = p; 
     }
 }
+
+

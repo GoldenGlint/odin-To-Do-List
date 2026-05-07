@@ -2,6 +2,34 @@ import {project, item} from "./classes.js";
 import {render} from "./render.js";
 import { format, compareAsc,isPast, isFuture, isToday, parseISO, addWeeks, isAfter, isBefore  } from "date-fns";
 
+export function saveToStorage(controller){
+    let data=controller.projectList.map(project=>({
+        name: project.name,
+        description: project.description,
+        projectID: project.projectID,
+        items: project.itemsList.map(item=>({
+            id: item.getID,
+            title: item.title,
+            description: item.description,
+            dueDate:item.dueDate.toISOString(),
+            priority: item.priority
+        }))
+}))
+    localStorage.setItem("projects", JSON.stringify(data));
+}
+
+export function loadFromStorage(controller){
+    const data=JSON.parse(localStorage.getItem("projects"));
+    if(!data) return;
+    data.forEach(projectData=>{
+        const p=new project(projectData.name, projectData.description, projectData.projectID);
+        projectData.items.forEach(itemData=>{
+            p.addItem(new item(itemData.title, itemData.description, new Date(itemData.dueDate), itemData.priority))
+        })
+        controller.addProject(p);
+    })   
+}
+
 export class controller{
     #projectList=[];
     #projectCounter=0;
@@ -9,11 +37,13 @@ export class controller{
     addProject(project){
         this.#projectList.push(project);
         this.#projectCounter++;
+        saveToStorage(this);
     }
 
     removeProject(ID){
         this.#projectList=this.#projectList.filter(project=>project.projectID!=ID);
         this.#projectCounter--;
+        saveToStorage(this);
     }
 
     findProject(ID){
@@ -71,7 +101,8 @@ export class controller{
         this.addProject(newProject);
         const dialog = document.querySelector("#new-project-dialog");
         dialog.close();
-        this.renderProject(newProject);    
+        this.renderProject(newProject);  
+        saveToStorage(this);  
 
     }
 
@@ -94,6 +125,7 @@ export class controller{
         const dialog = document.querySelector("#new-item-dialog");
         dialog.close();
         this.renderProject(project);
+        saveToStorage(this);
            
 
     }
