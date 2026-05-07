@@ -165,6 +165,7 @@
     padding: 24px;
     align-content: start;
     background-color: var(--main-bg);
+    min-height: 100%;
 }
 
 .project-card {

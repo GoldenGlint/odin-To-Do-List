@@ -146,6 +146,7 @@ export class controller{
         } else {
             this.renderProject(project);
         }
+        saveToStorage(this);
 
     }
 
