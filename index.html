@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<script defer src="main.js"></script></head>
+<body>
+    
+    <div id="container">
+        
+        <div id="header-container">
+           
+            
+        </div>
+        <div id="sidebar-container">
+            
+        </div>
+        <div id="project-container">
+            
+             
+
+               
+            
+        </div>
+    </div> 
+
+    <dialog id="new-project-dialog">
+        <form id="new-project-form">
+            <label for="project-name">Project Name:</label>
+            <input type="text" id="project-name" name="projectName" placeholder="Example Project">
+            <label for="project-description">Project Description:</label>
+            <input type="text" id="project-description" name="projectDescription" placeholder="This is a description.">
+            <div class="project-form-buttons">
+                <button id = "submit-project-button" type="submit">Add Project</button>
+                <button id="cancel-project-button" commandfor="new-project-dialog" command="close">Cancel</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="new-item-dialog">
+        <form id="new-item-form">
+            <label for="item-name">Item Name:</label>
+            <input type="text" id="item-name" name="itemName" placeholder="Example Item">
+            <label for="item-description">Item Description:</label>
+            <input type="text" id="item-description" name="itemDescription" placeholder="This is a description.">
+            <label for="item-date">Item Date:</label>
+            <input type="datetime-local" id="item-date" name="itemDate" placeholder="Enter Date">
+            <label for="item-priority">Item Priority:</label>
+             <select id="item-priority" name="itemPriority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+                <option value="cancelled">Cancelled</option>
+            </select>
+            <div class="item-form-buttons">
+                <button id = "submit-item-button" type="submit">Add Item</button>
+                <button id="cancel-item-button" commandfor="new-item-dialog" command="close">Cancel</button>
+            </div>
+        </form>
+    </dialog>
+   
+
+</body>
+</html>
